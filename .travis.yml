@@ -16,6 +16,7 @@ install:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       sudo apt-get install python-svn;
       wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
+      python -c 'import pysvn' && echo "could import pysvn (1)" || true;
     else
       wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     fi
@@ -33,6 +34,7 @@ install:
   - pip install -r ci/requirements-test.txt
   - pip install -r ci/requirements-$TRAVIS_PYTHON_VERSION.txt
   - pip install .
+  - python -c 'import pysvn' && echo "could import pysvn (2)"
 
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
